@@ -1,7 +1,5 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import apiAdapter from '../helpers/adapter/apiAdapter';
-import authMiddleware from "../helpers/middlewares/auth-middleware";
-import RequestWithUser from "../helpers/interfaces/requestWithUser.inteface";
  
 class BookingsController {
 
@@ -16,17 +14,25 @@ class BookingsController {
  
   private intializeRoutes() {
     this.router.get(`${this.path}`, this.getAllBookings);
+    this.router.get(`${this.path}/:id`, this.getBooking);
   }
  
-  private getAllBookings = async (req: RequestWithUser, res: Response, next:NextFunction) => {
+  private getAllBookings = async (req: Request, res: Response, next:NextFunction) => {
     try {
-      const options = { headers: req.cookies }
-      const resp = await this.api.get(req.path, options)
+      const resp = await this.api.get(req.path);
       res.send(resp.data);
     } catch (error) {
       next(error.response.data);
     }
-    
+  }
+
+  private getBooking = async (req: Request, res: Response, next:NextFunction) => {
+    try {
+      const resp = await this.api.get(req.path);
+      res.send(resp.data);
+    } catch (error) {
+      next(error.response.data);
+    }
   }
 
 }

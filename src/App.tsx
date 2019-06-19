@@ -1,9 +1,7 @@
 import express, { Application } from 'express';
 import bodyParser from 'body-parser';
-import cookieParse from 'cookie-parser';
 import errorMiddleware from './helpers/middlewares/error-middleware';
 import loggerMiddleware from './helpers/middlewares/logger-middleware';
-import apolloMiddleware from "./helpers/middlewares/apollo-middleware";
 
 class App {
 
@@ -21,7 +19,6 @@ class App {
     private initializeMiddlewares():void {
         this.app.use(loggerMiddleware);
         this.app.use(bodyParser.json());
-        this.app.use(cookieParse());
     }
 
     private initializeErrorHandling(): void {
