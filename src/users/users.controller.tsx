@@ -15,6 +15,7 @@ class UsersController {
   private intializeRoutes() {
     this.router.get(this.path, this.getAllUsers);
     this.router.get(`${this.path}/:id`, this.getUser);
+    this.router.post(`${this.path}`, this.createUser);
   }
  
   private getAllUsers = async (request: Request, response: Response, next: NextFunction) => {
@@ -29,6 +30,15 @@ class UsersController {
   private getUser = async (request: Request, response: Response, next: NextFunction) => {
     try {
       const resp = await this.api.get(request.path);
+      response.send(resp.data);
+    } catch (error) {
+      next(error.response.data)
+    }
+  }
+
+  private createUser = async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const resp = await this.api.post(request.path, request.body);
       response.send(resp.data);
     } catch (error) {
       next(error.response.data)
