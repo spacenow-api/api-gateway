@@ -11,7 +11,8 @@ const app = new App(
     new PostsController(),
     new UsersController(),
   ],
-  4000,
+  4001,
+  '0.0.0.0'
 );
  
 app.listen();

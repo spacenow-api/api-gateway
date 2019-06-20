@@ -3,7 +3,7 @@ import apiAdapter from '../helpers/adapter/apiAdapter';
  
 class UsersController {
 
-  public base_url = 'http://localhost:4001'
+  public base_url = 'http://localhost:3001'
   public path = '/users';
   public api = apiAdapter(this.base_url);
   public router = Router();
@@ -14,14 +14,22 @@ class UsersController {
  
   private intializeRoutes() {
     this.router.get(this.path, this.getAllUsers);
-    // this.router.post(this.path, this.createUser);
-    // this.router.patch(this.path, this.createUser);
+    this.router.get(`${this.path}/:id`, this.getUser);
   }
  
-  private getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
+  private getAllUsers = async (request: Request, response: Response, next: NextFunction) => {
     try {
-      const resp = await this.api.get(req.path);
-      res.send(resp.data);
+      const resp = await this.api.get(request.path);
+      response.send(resp.data);
+    } catch (error) {
+      next(error.response.data)
+    }
+  }
+
+  private getUser = async (request: Request, response: Response, next: NextFunction) => {
+    try {
+      const resp = await this.api.get(request.path);
+      response.send(resp.data);
     } catch (error) {
       next(error.response.data)
     }

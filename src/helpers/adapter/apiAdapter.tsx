@@ -1,7 +1,4 @@
+
 import axios, { AxiosInstance } from 'axios';
 
-export default (baseURL:string, headers?:string):AxiosInstance => {
-  return (
-    axios.create({baseURL, headers})
-  )
-};
+export default (baseURL:string):AxiosInstance => axios.create({baseURL: baseURL, withCredentials: true});
