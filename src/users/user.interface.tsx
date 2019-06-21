@@ -2,7 +2,7 @@ interface IUser {
     id: string;
     email: string;
     password: string;
-    emailConfirmed: boolean;
+    isEmailConfirmed: boolean;
 }
    
 export default IUser;
