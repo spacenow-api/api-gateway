@@ -3,7 +3,7 @@ import IUser from '../../users/user.interface';
 let users:IUser[] = [
     {
         id: '6c84fb90-12c4-11e1-840d-7b25c5ee775a',
-        name: 'Lucas',
+        name: 'Spacenow',
         email: 'lucas@gmail.com.au',
         password: '$2b$10$dO2G.x5q6og/EHVeAl4dveHKwpCfnnVcu7hPP4D2Kb1dEDVxU2EtG'
     },
