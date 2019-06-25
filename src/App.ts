@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import bodyParser from 'body-parser';
 import cookieParse from 'cookie-parser';
+
 import errorMiddleware from './helpers/middlewares/error-middleware';
 import loggerMiddleware from './helpers/middlewares/logger-middleware';
 

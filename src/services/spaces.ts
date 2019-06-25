@@ -3,12 +3,12 @@ import { AxiosInstance } from 'axios';
 
 import apiAdapter from '../helpers/adapter/apiAdapter';
 
-class Bookings {
+class Spaces {
   private api: AxiosInstance;
 
   private base_url: string;
 
-  private path = '/bookings';
+  private path = '/listing';
 
   private router = Router();
 
@@ -19,24 +19,10 @@ class Bookings {
   }
 
   private intializeRoutes() {
-    this.router.get(this.path, this.getAllBookings);
-    this.router.get(`${this.path}/:id`, this.getBooking);
+    this.router.get(`${this.path}`, this.getAllPosts);
   }
 
-  private getAllBookings = async (
-    request: Request,
-    response: Response,
-    next: NextFunction
-  ) => {
-    try {
-      const resp = await this.api.get(request.path);
-      response.send(resp.data);
-    } catch (error) {
-      next(error.response.data);
-    }
-  };
-
-  private getBooking = async (
+  private getAllPosts = async (
     request: Request,
     response: Response,
     next: NextFunction
@@ -50,4 +36,4 @@ class Bookings {
   };
 }
 
-export default Bookings;
+export default Spaces;
