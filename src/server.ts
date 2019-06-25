@@ -1,20 +1,20 @@
 import App from './App';
-import AuthenticationController from './authentication/authentication.controller';
-import BookingsController from './bookings/bookings.controller';
-import PostsController from './posts/posts.controller';
-import UsersController from './users/users.controller';
-import CategoriesController from './categories/categories.controller';
- 
+import Authentication from './services/authentication';
+import Bookings from './services/bookings';
+import Posts from './services/posts';
+import Users from './services/users';
+import Categories from './services/categories';
+
 const app = new App(
   [
-    new AuthenticationController(),
-    new BookingsController(),
-    new PostsController(),
-    new UsersController(),
-    new CategoriesController()
+    new Authentication(),
+    new Bookings(),
+    new Posts(),
+    new Users(),
+    new Categories()
   ],
   4001,
   '0.0.0.0'
 );
- 
+
 app.listen();
