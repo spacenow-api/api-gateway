@@ -1,13 +1,20 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import { AxiosInstance } from 'axios';
+
 import apiAdapter from '../helpers/adapter/apiAdapter';
 
 class Authentication {
-  public base_url = 'http://localhost:3001';
-  public path = '/auth';
-  public api = apiAdapter(this.base_url);
-  public router = Router();
+  private api: AxiosInstance;
 
-  constructor() {
+  private base_url: string;
+
+  private path = '/auth';
+
+  private router = Router();
+
+  constructor(apiHost: string) {
+    this.base_url = apiHost;
+    this.api = apiAdapter(this.base_url);
     this.intializeRoutes();
   }
 

@@ -1,13 +1,20 @@
 import { Router, Request, Response, NextFunction } from 'express';
+import { AxiosInstance } from 'axios';
+
 import apiAdapter from '../helpers/adapter/apiAdapter';
 
 class Posts {
-  public base_url = 'http://localhost:3002';
-  public api = apiAdapter(this.base_url);
-  public path = '/posts';
-  public router = Router();
+  private api: AxiosInstance;
 
-  constructor() {
+  private base_url: string;
+
+  private path = '/posts';
+
+  private router = Router();
+
+  constructor(apiHost: string) {
+    this.base_url = apiHost;
+    this.api = apiAdapter(this.base_url);
     this.intializeRoutes();
   }
 

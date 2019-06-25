@@ -1,20 +1,26 @@
-import { PORT } from './config';
+import {
+  PORT,
+  BOOKINGS_API_HOST,
+  CATEGORIES_API_HOST,
+  SPACES_API_HOST,
+  USERS_AUTHENTICATION_API_HOST
+} from './config';
 
 import App from './App';
 
 import Authentication from './services/authentication';
 import Bookings from './services/bookings';
-import Posts from './services/posts';
+import Spaces from './services/spaces';
 import Users from './services/users';
 import Categories from './services/categories';
 
 const app = new App(
   [
-    new Authentication(),
-    new Bookings(),
-    new Posts(),
-    new Users(),
-    new Categories()
+    new Authentication(USERS_AUTHENTICATION_API_HOST),
+    new Users(USERS_AUTHENTICATION_API_HOST),
+    new Spaces(SPACES_API_HOST),
+    new Categories(CATEGORIES_API_HOST),
+    new Bookings(BOOKINGS_API_HOST)
   ],
   PORT,
   '0.0.0.0'
