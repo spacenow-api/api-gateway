@@ -9,7 +9,7 @@ class Users {
   private base_url: string;
 
   private path = '/users';
-
+  
   private router = Router();
 
   constructor(apiHost: string) {
@@ -21,7 +21,7 @@ class Users {
   private intializeRoutes() {
     this.router.get(this.path, this.getAllUsers);
     this.router.get(`${this.path}/:id`, this.getUser);
-    this.router.post(`${this.path}`, this.createUser);
+    this.router.post(this.path, this.createUser);
   }
 
   private getAllUsers = async (
@@ -30,8 +30,7 @@ class Users {
     next: NextFunction
   ) => {
     try {
-      this.api = apiAdapter(this.base_url, request);
-      const resp = await this.api.get(request.path);
+      const resp = await this.api.get(request.path, { headers: request.headers });
       response.send(resp.data);
     } catch (error) {
       next(error.response.data);
@@ -44,7 +43,7 @@ class Users {
     next: NextFunction
   ) => {
     try {
-      const resp = await this.api.get(request.path);
+      const resp = await this.api.get(request.path, { headers: request.headers });
       response.send(resp.data);
     } catch (error) {
       next(error.response.data);
@@ -57,7 +56,7 @@ class Users {
     next: NextFunction
   ) => {
     try {
-      const resp = await this.api.post(request.path, request.body);
+      const resp = await this.api.post(request.path, request.body, { headers: request.headers });
       response.send(resp.data);
     } catch (error) {
       next(error.response.data);

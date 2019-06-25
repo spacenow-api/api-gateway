@@ -9,6 +9,7 @@ class App {
   public app: Application;
   public port: number;
   public host: string;
+  private path = '/gateway';
 
   constructor(controllers: any, port: number, host: string) {
     this.app = express();
@@ -31,7 +32,7 @@ class App {
 
   private initializeControllers(controllers: any): void {
     controllers.forEach((controller: any) => {
-      this.app.use('/gateway', controller.router);
+      this.app.use(this.path, controller.router);
     });
   }
 
