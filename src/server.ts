@@ -1,4 +1,7 @@
+import { PORT } from './config';
+
 import App from './App';
+
 import Authentication from './services/authentication';
 import Bookings from './services/bookings';
 import Posts from './services/posts';
@@ -13,7 +16,7 @@ const app = new App(
     new Users(),
     new Categories()
   ],
-  4001,
+  PORT,
   '0.0.0.0'
 );
 
