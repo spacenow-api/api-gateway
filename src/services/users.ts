@@ -30,6 +30,7 @@ class Users {
     next: NextFunction
   ) => {
     try {
+      this.api = apiAdapter(this.base_url, request);
       const resp = await this.api.get(request.path);
       response.send(resp.data);
     } catch (error) {
