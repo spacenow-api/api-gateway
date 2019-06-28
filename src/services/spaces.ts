@@ -3,7 +3,11 @@ import { AxiosInstance } from 'axios';
 
 import apiAdapter from '../helpers/adapter/apiAdapter';
 
-const ENDPOINTS = ['/listings/:id', '/listings/data/:listingId'];
+const ENDPOINTS = [
+  '/listings/:id',
+  '/listings/data/:listingId',
+  '/listings/settings/:listingId'
+];
 
 class Spaces {
   private api: AxiosInstance;
