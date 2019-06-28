@@ -3,13 +3,9 @@ import { AxiosInstance } from 'axios';
 
 import apiAdapter from '../helpers/adapter/apiAdapter';
 
-const ENDPOINTS = [
-  '/listings/:id',
-  '/listings/data/:listingId',
-  '/listings/settings/:listingId'
-];
+const ENDPOINTS = ['/locations/:id'];
 
-class Spaces {
+class Locations {
   private api: AxiosInstance;
 
   private router = Router();
@@ -31,4 +27,4 @@ class Spaces {
   }
 }
 
-export default Spaces;
+export default Locations;

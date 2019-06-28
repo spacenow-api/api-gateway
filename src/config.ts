@@ -14,3 +14,6 @@ export const SPACES_API_HOST =
 
 export const USERS_AUTHENTICATION_API_HOST =
   process.env.USERS_API_HOST || 'http://localhost:6001';
+
+export const LOCATIONS_API_HOST =
+  process.env.LOCATIONS_API_HOST || 'http://localhost:6005';
