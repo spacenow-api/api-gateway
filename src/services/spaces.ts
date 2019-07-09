@@ -6,7 +6,10 @@ import apiAdapter from '../helpers/adapter/apiAdapter';
 const GET_ENDPOINTS = [
   '/listings/:id',
   '/listings/data/:listingId',
-  '/listings/settings/:listingId'
+  '/listings/settings/:listingId',
+  '/listings/amenities/:listingId',
+  '/listings/rules/:listingId',
+  '/listings/access/:listingId'
 ];
 
 const POST_ENDPOINTS = ['/listings/draft'];
