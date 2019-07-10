@@ -3,9 +3,7 @@ import { AxiosInstance } from 'axios';
 
 import apiAdapter from '../helpers/adapter/apiAdapter';
 
-const GET_ENDPOINTS = ['/categories/legacy'];
-
-class Categories {
+class Availabilities {
   private api: AxiosInstance;
 
   private router = Router();
@@ -16,15 +14,13 @@ class Categories {
   }
 
   private intializeRoutes() {
-    GET_ENDPOINTS.forEach(o => {
-      this.router.get(o, (req: Request, res: Response, next: NextFunction) => {
-        this.api
-          .get(req.path)
-          .then(result => res.send(result.data))
-          .catch(err => next(err));
-      });
+    this.router.get('/availabilities/:id', (req: Request, res: Response, next: NextFunction) => {
+      this.api
+        .get(`/getByListing/${req.params.id}`)
+        .then(result => res.send(result.data))
+        .catch(err => next(err));
     });
   }
 }
 
-export default Categories;
+export default Availabilities;

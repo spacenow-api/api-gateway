@@ -3,7 +3,9 @@ import { AxiosInstance } from 'axios';
 
 import apiAdapter from '../helpers/adapter/apiAdapter';
 
-const ENDPOINTS = ['/locations/:id'];
+const GET_ENDPOINTS = ['/locations/:id'];
+
+const POST_ENDPOINTS = ['/locations'];
 
 class Locations {
   private api: AxiosInstance;
@@ -16,10 +18,18 @@ class Locations {
   }
 
   private intializeRoutes() {
-    ENDPOINTS.forEach(o => {
+    GET_ENDPOINTS.forEach(o => {
       this.router.get(o, (req: Request, res: Response, next: NextFunction) => {
         this.api
           .get(req.path)
+          .then(result => res.send(result.data))
+          .catch(err => next(err));
+      });
+    });
+    POST_ENDPOINTS.forEach(o => {
+      this.router.post(o, (req: Request, res: Response, next: NextFunction) => {
+        this.api
+          .post(req.path, req.body)
           .then(result => res.send(result.data))
           .catch(err => next(err));
       });
