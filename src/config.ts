@@ -20,3 +20,6 @@ export const LOCATIONS_API_HOST =
 
 export const AVAILABILITIES_API_HOST =
   process.env.AVAILABILITIES_API_HOST || "http://localhost:6006";
+
+export const ASSETS_API_HOST =
+  process.env.ASSETS_API_HOST || "http://localhost:6007";
