@@ -31,7 +31,7 @@ class Locations {
         this.api
           .post(req.path, req.body)
           .then(result => res.send(result.data))
-          .catch(err => next(err));
+          .catch(err => res.status(400).send(err.response.data.message));
       });
     });
   }
