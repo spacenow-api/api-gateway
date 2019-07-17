@@ -29,7 +29,7 @@ class Locations {
     POST_ENDPOINTS.forEach(o => {
       this.router.post(o, (req: Request, res: Response, next: NextFunction) => {
         this.api
-          .post(req.path, req.body)
+          .post(req.path, req.body, { headers: req.headers })
           .then(result => res.send(result.data))
           .catch(err => res.status(400).send(err.response.data.message));
       });
