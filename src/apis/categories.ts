@@ -19,9 +19,9 @@ class Categories {
     GET_ENDPOINTS.forEach(o => {
       this.router.get(o, (req: Request, res: Response, next: NextFunction) => {
         this.api
-          .get(req.path)
+          .get(req.path, { headers: req.headers })
           .then(result => res.send(result.data))
-          .catch(err => next(err));
+          .catch(err => res.status(400).send(err.response.data.message));
       });
     });
   }

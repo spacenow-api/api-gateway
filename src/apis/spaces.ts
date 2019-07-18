@@ -30,25 +30,25 @@ class Spaces {
     GET_ENDPOINTS.forEach(o => {
       this.router.get(o, (req: Request, res: Response, next: NextFunction) => {
         this.api
-          .get(req.path)
+          .get(req.path, { headers: req.headers })
           .then(result => res.send(result.data))
-          .catch(err => next(err));
+          .catch(err => res.status(400).send(err.response.data.message));
       });
     });
     POST_ENDPOINTS.forEach(o => {
       this.router.post(o, (req: Request, res: Response, next: NextFunction) => {
         this.api
-          .post(req.path, req.body)
+          .post(req.path, req.body, { headers: req.headers })
           .then(result => res.send(result.data))
-          .catch(err => next(err));
+          .catch(err => res.status(400).send(err.response.data.message));
       });
     });
     PUT_ENDPOINTS.forEach(o => {
       this.router.put(o, (req: Request, res: Response, next: NextFunction) => {
         this.api
-          .put(req.path, req.body)
+          .put(req.path, req.body, { headers: req.headers })
           .then(result => res.send(result.data))
-          .catch(err => next(err));
+          .catch(err => res.status(400).send(err.response.data.message));
       });
     });
   }
